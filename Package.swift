@@ -11,26 +11,74 @@ let package = Package(
         .tvOS(.v16),
     ],
     products: [
-        .library(
-            name: "SwiftGraphics",
-            targets: ["SwiftGraphics"]),
+        .library(name: "Array2D", targets: ["Array2D"]),
+        .library(name: "CoreGraphicsSupport", targets: ["CoreGraphicsSupport"]),
+        .library(name: "SIMDSupport", targets: ["SIMDSupport"]),
+        .library(name: "Sketches", targets: ["Sketches"]),
+        .library(name: "Geometry", targets: ["Geometry"]),
+        .library(name: "Raster", targets: ["Raster"]),
+        .library(name: "LegacyGraphics", targets: ["LegacyGraphics"]),
+        .library(name: "VectorSupport", targets: ["VectorSupport"]),
     ],
     dependencies: [
-        .package(url: "http://github.com/schwa/CoreGraphicsGeometrySupport", from: "0.1.0"),
-        .package(url: "http://github.com/schwa/Everything", branch: "jwight/develop"),
-        .package(url: "https://github.com/schwa/SIMD-Support.git", from: "0.1.2"),
+        .package(url: "https://github.com/schwa/ApproximateEquality", from: "0.2.0"),
+        .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0"),
     ],
     targets: [
-        .target(
-            name: "SwiftGraphics",
+        .target(name: "Array2D",
             dependencies: [
-                .product(name: "CoreGraphicsGeometrySupport", package: "CoreGraphicsGeometrySupport"),
-                .product(name: "Everything", package: "Everything"),
-                .product(name: "SIMDSupport", package: "SIMD-Support"),
+                "CoreGraphicsSupport",
+                "Geometry",
+                .product(name: "Algorithms", package: "swift-algorithms"),
             ]
         ),
-        .testTarget(
-            name: "SwiftGraphicsTests",
-            dependencies: ["SwiftGraphics"]),
+        .target(name: "CoreGraphicsSupport"),
+        .target(name: "Geometry", dependencies: ["ApproximateEquality"]),
+        .target(
+            name: "LegacyGraphics",
+            dependencies: [
+                "CoreGraphicsSupport",
+                "SIMDSupport",
+                "Geometry",
+                "Support"
+            ]
+        ),
+        .target(name: "Raster",
+            dependencies: [
+                "Geometry",
+                "LegacyGraphics",
+                "Support"
+            ]
+        ),
+        .target(name: "SIMDSupport"),
+        .target(name: "Sketches",
+            dependencies: [
+                .product(name: "ApproximateEquality", package: "ApproximateEquality"),
+                "CoreGraphicsSupport",
+                "SIMDSupport",
+                "Geometry",
+                "VectorSupport",
+            ]
+        ),
+        .target(name: "Support",
+            dependencies: [
+                "ApproximateEquality",
+                .product(name: "Algorithms", package: "swift-algorithms"),
+            ]
+        ),
+        .target(
+            name: "VectorSupport",
+            dependencies: [
+                .product(name: "ApproximateEquality", package: "ApproximateEquality"),
+                .product(name: "ApproximateEqualityMacros", package: "ApproximateEquality"),
+                "CoreGraphicsSupport",
+                "SIMDSupport",
+                "Geometry",
+            ]
+        ),
+
+        .testTarget(name: "LegacyGraphicsTests", dependencies: ["LegacyGraphics"]),
+        .testTarget(name: "SketchesTests", dependencies: ["Sketches"]),
+        .testTarget(name: "VectorSupportTests", dependencies: ["VectorSupport"]),
     ]
 )
