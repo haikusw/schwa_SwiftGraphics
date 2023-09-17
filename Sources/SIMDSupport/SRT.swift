@@ -58,7 +58,7 @@ extension SRT: CustomStringConvertible {
     public var description: String {
         "SRT(\(innerDescription))"
     }
-    
+
     internal var innerDescription: String {
         let scale = scale == .unit ? nil : "scale: [\(scale.x.formatted()), \(scale.y.formatted()), \(scale.z.formatted())]"
         let rotation = rotation == .identity ? nil : "rotation: \(rotation.innerDescription)"

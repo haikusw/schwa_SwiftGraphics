@@ -68,7 +68,7 @@ public extension simd_float4x4 {
         return rotation
     }
 
-    var decompose: Optional<(scale: SIMD3<Float>, rotation: simd_float4x4, translation: SIMD3<Float>)> {
+    var decompose: (scale: SIMD3<Float>, rotation: simd_float4x4, translation: SIMD3<Float>)? {
         // Copy the matrix first - we'll use this to break down each component
         var copy = self
         // Start by extracting the translation (and/or any projection) from the given matrix
