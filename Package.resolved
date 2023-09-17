@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/schwa/ApproximateEquality",
       "state" : {
-        "revision" : "6574a78025c8a76404328b3e053cb294caf6155a",
-        "version" : "0.2.0"
+        "revision" : "13ae17c1b1eb3bab0912bb29b264d3be2ea38115",
+        "version" : "0.2.1"
       }
     },
     {

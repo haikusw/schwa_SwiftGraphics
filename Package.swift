@@ -21,8 +21,10 @@ let package = Package(
         .library(name: "VectorSupport", targets: ["VectorSupport"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/schwa/ApproximateEquality", from: "0.2.0"),
+        .package(url: "https://github.com/schwa/ApproximateEquality", from: "0.2.1"),
         .package(url: "https://github.com/apple/swift-algorithms", from: "1.0.0"),
+        .package(url: "https://github.com/apple/swift-numerics", from: "1.0.0"),
+        .package(url: "https://github.com/apple/swift-syntax.git", from: "509.0.0"),
     ],
     targets: [
         .target(name: "Array2D",
@@ -79,6 +81,11 @@ let package = Package(
 
         .testTarget(name: "LegacyGraphicsTests", dependencies: ["LegacyGraphics"]),
         .testTarget(name: "SketchesTests", dependencies: ["Sketches"]),
-        .testTarget(name: "VectorSupportTests", dependencies: ["VectorSupport"]),
+        .testTarget(name: "VectorSupportTests", dependencies: [
+            "VectorSupport",
+            .product(name: "SwiftSyntax", package: "swift-syntax"),
+            .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
+            .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
+        ]),
     ]
 )
