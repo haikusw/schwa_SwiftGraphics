@@ -119,13 +119,13 @@ public extension MTLDevice {
 
     func makeBuffer(bytesOf content: some Any, options: MTLResourceOptions) -> MTLBuffer? {
         withUnsafeBytes(of: content) { buffer in
-            makeBuffer(bytes: buffer.baseAddress!, length: buffer.count, options: .storageModeShared)
+            makeBuffer(bytes: buffer.baseAddress!, length: buffer.count, options: options)
         }
     }
 
     func makeBuffer(bytesOf content: [some Any], options: MTLResourceOptions) -> MTLBuffer? {
         content.withUnsafeBytes { buffer in
-            makeBuffer(bytes: buffer.baseAddress!, length: buffer.count, options: .storageModeShared)
+            makeBuffer(bytes: buffer.baseAddress!, length: buffer.count, options: options)
         }
     }
 
