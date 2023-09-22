@@ -27,7 +27,7 @@ public extension View {
     func metalDevice(_ value: MTLDevice) -> some View {
         modifier(MTLDeviceModifier(value: value))
     }
-    
+
     func metalDevice() -> some View {
         guard let device = MTLCreateSystemDefaultDevice() else {
             fatalError("Well that's just not much fun is it?")

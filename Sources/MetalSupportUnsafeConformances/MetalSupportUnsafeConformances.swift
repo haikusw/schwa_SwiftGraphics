@@ -330,7 +330,6 @@ extension MTLTriangleFillMode: CustomStringConvertible {
     }
 }
 
-
 extension MTLCompareFunction: CaseIterable, CustomStringConvertible {
     public static var allCases: [MTLCompareFunction] = [
         .never,

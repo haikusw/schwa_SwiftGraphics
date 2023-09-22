@@ -58,8 +58,6 @@ public extension simd_float4x4 {
 //                                         vector_float4(translationX, translationY, translationZ, 1)))
 //}
 
-
-
 public extension simd_float4x4 {
     @inlinable init(_ m: simd_float3x3) {
         self = simd_float4x4(columns: (
