@@ -1,5 +1,6 @@
 steps:
     - commands:
           - "swift package clean"
-          - "swift build -v"
-          - "swift test -v"
+          - "swift build"
+          - "swift test"
+          - "swiftlint lint --quiet"
