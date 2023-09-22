@@ -149,7 +149,7 @@ public extension CGAffineTransform {
     }
 
     static func *= (lhs: inout CGAffineTransform, rhs: CGAffineTransform) {
-        lhs = lhs.concat(other: rhs)
+        lhs = lhs.concatenating(rhs)
     }
 }
 
@@ -186,7 +186,7 @@ public extension CGAffineTransform {
     init(transforms: [CGAffineTransform]) {
         var current = CGAffineTransform.identity
         for transform in transforms {
-            current = current.concat(other: transform)
+            current = current.concatenating(transform)
         }
         self = current
     }
