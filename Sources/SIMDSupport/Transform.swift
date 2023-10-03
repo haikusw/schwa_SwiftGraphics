@@ -130,6 +130,13 @@ public struct Transform: Codable, Hashable {
     }
 }
 
+extension Transform: Sendable {
+}
+
+extension Transform.Storage: Sendable {
+}
+
+
 extension Transform.Storage: Hashable {
     public func hash(into hasher: inout Hasher) {
         switch self {

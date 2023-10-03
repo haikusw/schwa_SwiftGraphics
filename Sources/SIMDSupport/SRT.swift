@@ -22,6 +22,9 @@ public struct SRT {
     }
 }
 
+extension SRT: Sendable {
+}
+
 extension SRT: Hashable {
     public func hash(into hasher: inout Hasher) {
         scale.altHash(into: &hasher)
