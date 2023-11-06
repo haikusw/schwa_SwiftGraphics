@@ -257,14 +257,16 @@ extension MTLGPUFamily: CaseIterable, CustomStringConvertible {
         case .macCatalyst2: return "macCatalyst2"
         case .apple8: return "apple8"
         case .metal3: return "metal3"
-        case .apple9: return "apple8"
+#if os(iOS)
+        case .apple9:  return "apple9"
+#endif
         @unknown default:
             fatalError("Unknown MTLGPUFamily")
         }
     }
 
     public static var allCases: [MTLGPUFamily] {
-        [
+        var result: [MTLGPUFamily] = [
             .apple1,
             .apple2,
             .apple3,
@@ -277,8 +279,12 @@ extension MTLGPUFamily: CaseIterable, CustomStringConvertible {
             .common1,
             .common2,
             .common3,
-            //.metal3, // TODO: fix me
+            .metal3
         ]
+#if os(iOS)
+        result += [.apple9]
+#endif
+        return result
     }
 }
 
